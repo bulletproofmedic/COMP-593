@@ -32,7 +32,7 @@ response = pokeApi.getresponse()
 if response.status == 200:
     print('Response:',response.status)
 else:
-    print('There may have been a problem. Response:', response.status)
+    print('There was a problem. Response:', response.status)
 
 # Extract body from response message from PokeAPI
 # Response body should contain Pokemon info in JSON format
@@ -74,20 +74,17 @@ requestBody = urllib.parse.urlencode(requestParams)
 #Since we are URLEncoding the request Body, we need to tell Pastebin that it can expect x-www-form-urlencoded content, by adding this information to the request header
 pasteBinHeaders = {'Content-Type': 'application/x-www-form-urlencoded'}
 
-#When you are ready, you will pass the requestBody and the pasteBinHeaders to a pastebin request object, filling in the parameters as necessary.
-#pasteBinRequest = pasteBin.request(method, url, body=None, headers={})
-
 # Send request message to PasteBin API
 pasteBinRequest = pasteBin.request('PUT', '/api/api_post.php', body=requestBody, headers=pasteBinHeaders)
 
 # Get response message from PasteBin API
-response = pasteBin.getresponse(HTTP.client.HTTPResponse)
+response = pasteBin.getresponse()
 
 # Check whether response indicates success
 if response.status == 200:
     print('Response:',response.status, "- your paste was successful.")
 else:
-    print('There may have been a problem. Response:', response.status)
+    print('There was a problem. Response:', response.status)
 
 # Extract body from response message from PasteBin API
 print(response)
@@ -98,4 +95,4 @@ print(response)
 #paste_url = response_body
 
 # Print the URL of the new PasteBin paste
-print(paste_url)
+#print(paste_url)
